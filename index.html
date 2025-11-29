@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gabriela — Portfolio</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#07060a;
+      --panel:#0f1115;
+      --glass: rgba(255,255,255,0.03);
+      --pink-1:#ff4da6;
+      --pink-2:#ff1a8c;
+      --muted:#b9b9bf;
+      --white:#f7f7fb;
+    }
+    *{box-sizing:border-box}
+    body{background:linear-gradient(180deg,#07060a 0%, #050406 100%);color:var(--white);font-family:Roboto,system-ui,Arial,sans-serif;margin:0}
+
+    /* NAV */
+    .navbar{background:linear-gradient(90deg, #f83d9a, #cc0368);
+      box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);padding:1rem 0, ;}
+    .navbar-brand{font-family:'Playfair Display',serif, Helvetica, sans-serif;font-weight:700;color:var(--white)}
+    .nav-link{color:var!important}
+
+    /* HERO */
+    .hero{min-height:72vh;display:flex;align-items:center;padding:4rem 0;position:relative;overflow:visible}
+    .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:2.2rem;align-items:center}
+    
+    .hero {
+      background: radial-gradient(circle at top, #ff4da6 0%, #0a0a0a 80%);
+      color: white;
+      text-align: left;
+      padding: 120px 20px;
+      box-shadow: 0 0 30px rgba(255, 77, 166, 0.3) inset;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 8px #ff4da6;
+    }
+    .hero p {
+      color: #f3bfdc;
+      font-size: 1.2rem;
+    }
+
+    /* PROFILE CARD (left) */
+    .avatar-wrap {
+		position: relative;
+		width: 325px;      
+		height: 325px;      
+		margin: 0 auto;
+	}
+	.avatar {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;  /* circle shape */
+		object-fit: cover;
+		border: 4px solid rgba(255,255,255,0.04);
+		box-shadow: 0 24px 70px rgba(5,5,7,0.8), 0 0 40px rgba(255,77,180,0.06);
+		transform-style: preserve-3d;
+		transition: transform .45s cubic-bezier(.2,.9,.3,1);
+	}
+    .avatar:hover{transform:translateY(-8px) rotateX(6deg) rotateY(-6deg)}
+    .avatar-glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		ransform: translate(-50%, -50%);
+		width: 220px;
+		height: 220px;
+		border-radius: 50%;
+		filter: blur(36px);
+		background: radial-gradient(circle at 30% 30%, rgba(255,77,180,0.18), rgba(255,26,140,0.06));
+		pointer-events: none;
+	}
+    .profile-name{margin-top:30px;text-align:center;font-family:'Playfair Display',serif;font-size:1.6rem}
+    .profile-role{display:block;color:var(--muted);font-size:0.95rem;margin-top:6px;text-align:center}
+
+    /* QUICK INFO */
+    .info-grid{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+    .info-pill{background:linear-gradient(90deg, rgba(255,77,180,0.06), rgba(255,26,140,0.04));padding:8px 12px;border-radius:999px;font-size:0.85rem;color:var(--muted);border:1px solid rgba(255,77,180,0.03)}
+
+    /* RIGHT: INTRO / CTA */
+    .intro h1{font-family:'Playfair Display',serif;font-size:2.6rem;margin:0 0 .4rem;color:var(--white);letter-spacing:0.2px}
+    .intro p.lead{color:#fddbef;font-size:1.05rem}
+    .cta-group{margin-top:18px}
+    .btn-primary-custom{background:linear-gradient(90deg,var(--pink-1),var(--pink-2));border:none;color:white;border-radius:28px;padding:10px 18px;box-shadow:0 10px 30px rgba(255,26,140,0.18)}
+    .btn-outline-custom{border:1px solid rgba(255,77,180,0.12);color:var(--muted);background:transparent;border-radius:28px;padding:8px 16px}
+
+    /* PROJECT CARDS (3D feel) */
+     
+    .projects{
+      padding:3rem 0;
+      color: #ff4da6;
+      text-shadow: 2px 2px 6px rgba(255, 77, 166, 0.6);
+      font-weight: 700;
+	  
+    }
+    .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;overflow:hidden;border:1px solid rgba(255,77,180,0.04);box-shadow:0 18px 60px rgba(2,4,8,0.6);transition:transform .35s, box-shadow .35s}
+    .project-card:hover{transform:translateY(-12px) rotateX(3deg);box-shadow: 0 15px 15px rgba(255, 77, 166, 0.2);}
+    .project-img{width:100%;height:160px;object-fit:cover}
+    .project-body{padding:18px; color:#ff9dcb;}
+    .project-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{background:rgba(255,77,180,0.06);padding:6px 10px;border-radius:999px;font-size:0.8rem;color:var(--muted);border:1px solid rgba(255,77,180,0.03)}
+
+	/* ICONS */
+		.social-icons {
+			margin-top: 35px;
+			display: flex;
+			justify-content: center;  
+			align-items: center;
+			gap: 30px;
+		}
+
+		.social-icon {
+			width: 52px;
+			height: 52px;
+			border-radius: 50%;
+			background: rgba(255, 77, 166, 0.12);
+			isplay: flex;
+			align-items: center;
+			justify-content: center;
+			border: 2px solid rgba(255, 77, 166, 0.25);
+			color: #ff4da6;
+			font-size: 2rem;
+			transition: .3s ease;
+			box-shadow: 0 0 18px rgba(255, 77, 166, 0.25);
+		}
+		.social-icon:hover {
+			background: rgba(168, 85, 247, 0.25); 
+			border-color: rgba(168, 85, 247, 0.6);
+			color: #a855f7;
+			transform: translateY(5px) scale(1.08);
+			box-shadow: 0 0 18px rgba(168, 85, 247, 0.7);
+		}
+		
+		.cp100-card {
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 77, 180, 0.15);
+			padding: 25px 30px;
+			border-radius: 18px;
+			text-align: center;
+			max-width: 900px;
+			margin: 40px auto;
+			box-shadow: 0 10px 35px rgba(255, 77, 166, 0.25);
+			color: #ffb9d9;
+			font-size: 1.05rem;
+			line-height: 1.7rem;
+		}
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(255, 77, 166, 0.5);
+    }
+/* VIDEO SECTION */
+.video-section {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.video-title {
+  color: #ff4da6;
+  font-weight: 700;
+  text-shadow: 2px 2px 6px rgba(255, 77, 166, 0.6);
+  margin-bottom: 35px;
+}
+
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 50px; /* MORE SPACE BETWEEN VIDEOS */
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.video-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(255, 77, 166, 0.25);
+  width: 480px; /* BETTER SIZE FOR PORTFOLIO */
+  max-width: 100%;
+}
+   .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(255, 77, 166, 0.5);
+    }
+video {
+  width: 100%;
+  height: 260px; /* GREAT video height */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255, 77, 166, 0.4);
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .video-card {
+    width: 100%;
+  }
+  video {
+    height: 220px;
+  }
+}
+		
+    /* CERTIFICATES */
+    .section-title {
+      color: #ff4da6;
+      text-shadow: 2px 2px 6px rgba(255, 77, 166, 0.6);
+      font-weight: 700;
+    }
+    .card {
+      background-color: #1a1a1a;
+      border: none;
+      box-shadow: 0 6px 15px rgba(255, 77, 166, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 15px;
+      color: #f8f8f8;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(255, 77, 166, 0.5);
+    }
+    .btn-pink {
+      background: linear-gradient(90deg, #ff4da6, #ff1a8c);
+      border: none;
+      color: #fff;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(255, 77, 166, 0.4);
+      font-size: 1rem;
+    }
+    .btn-pink:hover {
+      background: linear-gradient(90deg, #ff1a8c, #ff4da6);
+      box-shadow: 0 8px 20px rgba(255, 77, 166, 0.6);
+    }
+
+    /* SKILLS & STATS */
+    .skills{
+      padding:2rem 0;
+      color: #ff4da6;
+      text-shadow: 2px 2px 6px rgba(255, 77, 166, 0.6);
+      font-weight: 700;
+	  background:linear-gradient(180deg, rgba(247, 202, 202, 0.02), rgba(245, 188, 188, 0.01));
+	  padding:20px;
+	  border-radius:14px;
+	  border:1px solid rgba(255,77,180,0.04);
+	  box-shadow:0 14px 50px rgba(0,0,0,0.6)}
+    .skill-pill{background:linear-gradient(90deg, rgba(255,77,180,0.04), rgba(255,26,140,0.02));padding:6px 12px;border-radius:999px;color:var(--muted);border:1px solid rgba(255,77,180,0.03)}
+
+	.btn {
+	  background-color: dark pink; 
+	  border: none; 
+	  color: bleck; 
+	  padding: 12px 16px; 
+	  font-size: 16px; 
+	  cursor: pointer; 
+	}
+	.btn:hover {
+	  background-color: rgba(255, 96, 176, 0.25);
+	}
+
+    /* CONTACT */
+    .contact-card{background:linear-gradient(180deg, rgba(247, 202, 202, 0.02), rgba(245, 188, 188, 0.01));padding:20px;border-radius:14px;border:1px solid rgba(255,77,180,0.04);box-shadow:0 14px 50px rgba(0,0,0,0.6)}
+
+    /* FOOTER */
+    footer{padding:28px 0;text-align:center;color:pink;margin-top:40px}
+
+    /* RESPONSIVE */
+    @media (max-width:980px){
+      .hero-inner{grid-template-columns:1fr;gap:1rem;padding:1rem}
+      .avatar{width:220px;height:220px}
+      .avatar-wrap{width:220px}
+      .intro h1{font-size:2rem}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+		   <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-3"><a class="btn btn-primary-custom" href="#contact">Hire me</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner container">
+
+      <!-- LEFT: profile hologram card -->
+<div>
+    <div class="avatar-wrap">
+        <img src="C:\Users\Yela\Downloads\main\second folder\pics\yilaaa.png" class="avatar">
+        <div class="avatar-glow"></div>
+    </div>
+	<center>
+    <div class="profile-name">IT Student • Designer</div> <br>
+    <div class="info-pill">LUECNA CITY,<br>QUEZON PROVNCE, PH</div>
+	</center>
+</div>
+
+      <!-- RIGHT: intro -->
+      <div class="intro">
+		<br>
+		<br>
+	
+       <h1>Hello, I'm GABRIELA ASIS BUERANO</h1>
+        <p class="lead">A highly motivated <b> Information Technology student </b> seeking an entry level position where I can design and build beginner-friendly projects. This portfolio shows projects, certificates, and quick demos all made with HTML, CSS, Bootstrap, and a bit of creativity and continue to develop my skills in a professional environment.</p>
+
+        <div class="cta-group">
+          <a class="btn btn-primary-custom me-2" href="#projects">See projects</a>
+          <a class="btn btn-outline-custom" href="#contact">Contact</a>
+        </div>
+
+        <!-- quick highlights -->
+		<center>
+        <div class="row mt-4 gy-3">
+          <div class="col-md-6">
+            <div class="card p-3 project-card">
+              <div class="d-flex align-items-center gap-3">
+                <div class="flex-grow-1">
+                  <div style="font-size:0.95rem;font-weight:700">FOCUSED SKILLS</div>
+                  <div style="color:var(--muted);font-size:0.9rem">Frontend • Accessibility • Responsive</div>
+                </div>
+                <div class="badge bg-gradient" style="background:linear-gradient(90deg,var(--pink-1),var(--pink-2));padding:6px 10px;border-radius:10px;box-shadow:0 6px 18px rgba(255,26,140,0.14)">Top</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card p-3 project-card">
+              <div class="d-flex align-items-center gap-3">
+                <div class="flex-grow-1">
+                  <div style="font-size:0.95rem;font-weight:700">CERTIFICATES</div>
+                  <div style="color:var(--muted);font-size:0.9rem">Coursera & Online Courses</div>
+                </div>
+                <i class="bi bi-award-fill" style="font-size:1.5rem;color:var(--pink-1)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+		
+<div class="social-icons" type="button">
+    <a class="social-icon" href="https://www.facebook.com/" target="_blank">
+        <i class="bi bi-facebook"></i>
+    </a>
+
+    <a class="social-icon" href="https://github.com/" target="_blank">
+        <i class="bi bi-github"></i>
+    </a>
+
+    <a class="social-icon" href="https://twitter.com/" target="_blank">
+        <i class="bi bi-twitter"></i>
+    </a>
+
+    <a class="social-icon" href="https://linkedin.com/" target="_blank">
+        <i class="bi bi-linkedin"></i>
+    </a>
+</div>
+   </div>
+</center>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 style="color:var(--pink-1);"><b>SELECTED PROJECTS</b></h2>
+      <a href="#" style="color:var(--muted);text-decoration:none">See all →</a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="project-card">
+          <img src="https://media.cheggcdn.com/media/535/535dfcf1-dd0c-487b-a3cb-4d6e6ab1e564/phpqzFJi3.png" class="project-img" alt="Project 1">
+          <div class="project-body">
+            <h5><b>Grocery Price Tracker (Python)</b></h5>
+            <p style="color:var(--muted)">A beginner-friendly script to record & compare grocery prices. Includes CSV export and simple UI.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">CSV</span>
+              <span class="tag">Beginner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="project-card">
+          <img src="https://www.excel-easy.com/examples/images/bmi-calculator/bmi-calculator.png" class="project-img" alt="Project 2">
+          <div class="project-body">
+            <h5><b>BMI Calculator (Python)</b></h5>
+            <p style="color:var(--muted)">Small CLI app that calculates BMI and gives recommendations. Perfect for learning conditionals.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">CLI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4"> 
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&s=abcd" class="project-img" alt="Project 3">
+          <div class="project-body">
+            <h5><b>Responsive Webpage (HTML/CSS/Bootstrap)</b></h5>
+            <p style="color:var(--muted)">A clean, responsive webpage with accessible components and a modern look.</p>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+	
+  </section>
+  <div class="cp100-card">
+     <p><center>This project in CP100 is a digital portfolio meant to show my IT skills and learning journey.
+   It will highlight my work with tools in HTML, CSS, and Bootstrap, reflecting my growth through the Introduction to Computing course.
+   This portfolio will detail my problem-solving processes and link my projects to basic computing concepts, illustrating how theory applies to real-world technology.</center>
+   </p>
+   </div>
+   <br>
+  
+  <!-- VIDEOS SECTION -->
+<section class="video-section">
+
+  <div class="video-wrapper">
+
+    <div class="video-card">
+      <h5 style="color:#ff9dcb;">How To Create Website Using HTML CSS Bootstrap | Responsive Website Development Tutorials</h5>
+      <video controls>
+        <source src="C:\Users\Yela\Downloads\main\second folder\vids\tutorial.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="video-card">
+      <h5 style="color:#ff9dcb;"> What is Bootstrap? / <br>Beginner CSS Framework<br></h5>
+      <video controls>
+        <source src="C:\Users\Yela\Downloads\main\second folder\vids\btts.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+</section>
+
+  <!-- CERTIFICATES -->
+   <section class="py-5 bg-dark" id="certificates">
+    <div class="container">
+      <h2 class="section-title text-left mb-5">CERTIFICATES</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card text-center p-3">
+          <img src="C:\Users\Yela\Downloads\main\second folder\pics\cert1.jpg" class="card-img-top rounded" alt="Project Image">
+            <h5 class="mt-3">Foundations of Computer Hardware and Storage</h5>
+            <p>an online non-credit authorized by Packt and offered through Coursera.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center p-3">
+            <img src="C:\Users\Yela\Downloads\main\second folder\pics\cert2.jpg" class="card-img-top rounded" alt="Project Image">
+            <h5 class="mt-3">AI Ethics, Responsible Use, and Creativity</h5>
+            <p>an online non-creadit coursee authorized by University of Michigan and offered through Coursera.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center p-3">
+            <img src="C:\Users\Yela\Downloads\main\second folder\pics\cert3.jpg" class="card-img-top rounded" alt="Project Image">
+            <h5 class="mt-3">Building a Webpage with HTML and CSS</h5>
+            <p>an online non-credit authorized by Board Infinity and offered through Coursera.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center p-3">
+            <img src="C:\Users\Yela\Downloads\main\second folder\pics\cert4.jpg" class="card-img-top rounded" alt="Project Image">
+            <h5 class="mt-3">Programming for Everybody(Getting Started with Python</h5>
+            <p>an online non-creadit coursee authorized by University of Michigan and offered through Coursera.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center p-3">
+            <img src="C:\Users\Yela\Downloads\main\second folder\pics\cert5.jpg" class="card-img-top rounded" alt="Project Image">
+            <h5 class="mt-3">Python Data Structures</h5>
+            <p>an online non-creadit coursee authorized by University of Michigan and offered through Coursera.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center p-3">
+            <img src="C:\Users\Yela\Downloads\main\second folder\pics\cdchum.jpg" class="card-img-top rounded" alt="Project Image">
+            <h5 class="mt-3">Codechum Certificate</h5>
+            <p>a certificate of completion awarded upon finishing the "Basic Python" course, which covers the foundational concepts of the Python programming language.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills container" type="button">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h3 style="color:var(--pink-1)"><b>SKILLS</b></h3>
+        <p style="color:var(--muted)">Programming Languages</p>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-outline-custom"><span class="skill-pill"><b>HTML</b></span></button>
+          <button class="btn btn-outline-custom"><span class="skill-pill"><b>CSS</b></span></button>
+          <button class="btn btn-outline-custom"><span class="skill-pill"><b>Bootstrap</b></span></button>
+          <button class="btn btn-outline-custom"><span class="skill-pill"><b>C++</b></span></button>
+          <button class="btn btn-outline-custom"><span class="skill-pill"><b>Python</b></span></button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3 contact-card">
+          <h5 style="margin:0 0 6px 0">Quick Contact</h5>
+          <p style="color:var(--muted);margin-bottom:8px">yella.buerano1023@gmail.com • +63 930 181 9397</p>
+          <a href="#contact" class="btn btn-outline-custom">Send a message</a>
+        </div>
+      </div>
+    </div>
+  </section>
+   
+  <!-- CONTACT -->
+  <section id="contact" class="container" style="padding:3rem 0 5rem 0">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card p-4 project-card">
+          <h4 style="margin-bottom:8px;color:var(--pink-1)">Get in touch</h4>
+          <p style="color:var(--muted)">I’m open to freelance work and collaborations. Drop a message and I’ll get back to you.</p>
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input class="form-control bg-transparent text-white" placeholder="Your name" id="cname" required>
+              </div>
+              <div class="col-md-6">
+                <input class="form-control bg-transparent text-white" type="email" placeholder="Your email" id="cemail" required>
+              </div>
+            </div>
+            <div class="mt-3">
+              <textarea class="form-control bg-transparent text-white" rows="4" placeholder="Message" id="cmsg" required></textarea>
+            </div>
+            <div class="mt-3 text-end">
+              <button class="btn btn-primary-custom" type="submit">Send</button>
+            </div>
+            <div id="formAlert" class="mt-3" style="display:none"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer>
+    <div class="container text-center">
+      <small style="color:var(--muted)"><a href="https://img.freepik.com/free-vector/thank-you-lettering_1262-6963.jpg?semt=ais_hybrid&w=740&q=80">[Developed by Gabriela Buerano]</a></small>
+	  ©2025 <span id="year"></span>
+	  
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple contact behaviour (local only)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+	  
+	  
+      const alertBox = document.getElementById('formAlert');
+      alertBox.style.display='block';
+      alertBox.className = 'alert alert-success';
+      alertBox.textContent = 'Thanks so much. I'll get back to you soon!';
+      this.reset();
+    });
+
+    // Allow dropping/replacing avatar via file input (beginner-friendly)
+    // You can replace the <img src="your-photo.jpg"> by uploading a photo using this picker
+    (function(){
+      const avatar = document.getElementById('avatarImg');
+      // Create small floating input
+      const inp = document.createElement('input');
+      inp.type='file';inp.accept='image/*';inp.style.display='none';
+      document.body.appendChild(inp);
+      avatar.style.cursor='pointer';
+      avatar.title = 'Click to replace photo (works locally)';
+      avatar.addEventListener('click', ()=> inp.click());
+      inp.addEventListener('change', e=>{
+        const f = e.target.files[0];
+        if(!f) return;
+        const url = URL.createObjectURL(f);
+        avatar.src = url;
+      });
+    }());
+  </script>
+</body>
+</html>
